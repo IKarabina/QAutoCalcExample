@@ -1,3 +1,8 @@
+package com.example.services.parser;
+
+import com.example.models.Expression;
+import com.example.models.Operation;
+import com.example.models.ParseException;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -7,14 +12,15 @@ import java.util.Collection;
 
 @RunWith(Parameterized.class)
 public class ParserTest {
-    private String expression;
+    private String expr;
     private int first, second;
     private Operation operation;
     private Parser parser;
+    private Expression expression;
 
 
-    public ParserTest(String expression, int first, int second, Operation operation) {
-        this.expression = expression;
+    public ParserTest(String expr, int first, int second, Operation operation) {
+        this.expr = expr;
         this.first = first;
         this.second = second;
         this.operation = operation;
@@ -33,10 +39,10 @@ public class ParserTest {
 
     @Test
     public void test() throws ParseException {
-        parser.evaluate(expression);
-        Assert.assertEquals(first, parser.getFirstOperand());
-        Assert.assertEquals(second, parser.getSecondOperand());
-        Assert.assertEquals(operation, parser.getOperation());
+        expression = parser.parse(expr);
+        Assert.assertEquals(first, expression.getFirst());
+        Assert.assertEquals(second, expression.getSecond());
+        Assert.assertEquals(operation, expression.getOperation());
     }
 
 

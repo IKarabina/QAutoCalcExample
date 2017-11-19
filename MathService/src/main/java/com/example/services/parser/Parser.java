@@ -1,40 +1,53 @@
+package com.example.services.parser;
+
+import com.example.models.Expression;
+import com.example.models.Operation;
+import com.example.models.ParseException;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Parser extends ParseException {
+public class Parser  {
 
-    private Operation operation;
-    private char oper;
-    private int first, second;
 
-    public void evaluate(String expression) throws ParseException {
+    public Expression parse(String expression) throws ParseException {
 
-          String clearExpression = expression.replaceAll(" ", "");
-
+        Expression expr = new Expression();
         try {
-              oper = getOperation(clearExpression);
-              first = Integer.parseInt(clearExpression.substring(0, getOperationIndex(clearExpression)));
-              second = Integer.parseInt(clearExpression.substring(getOperationIndex(clearExpression) + 1));
 
-              switch (oper) {
+             String clearExpression = expression.replaceAll(" ", "");
+             char oper = getOperation(clearExpression);
+
+            int first = Integer.parseInt(clearExpression.substring(0, getOperationIndex(clearExpression)));
+            int second = Integer.parseInt(clearExpression.substring(getOperationIndex(clearExpression) + 1));
+
+            expr.setFirst(first);
+            expr.setSecond(second);
+
+             switch (oper) {
                   case '+':
-                     operation=Operation.ADD;
+                     expr.setOperation(Operation.ADD);
                      break;
                   case '-':
-                      operation=Operation.SUB;
+                      expr.setOperation(Operation.SUB);
                       break;
                   case '*':
-                      operation=Operation.MUL;
+                      expr.setOperation(Operation.MUL);
                       break;
                   case '/':
-                      operation=Operation.DIV;
+                      expr.setOperation(Operation.DIV);
                       break;
-                  default: operation=null;
+                  default:
+                      throw new ParseException("Wrong operation :" + oper );
               }
 
+
+
           }catch (Exception e){
-                throw new ParseException("Wrong parse");
+                throw new ParseException("Wrong expression parse");
           }
+
+          return expr;
       }
 
       private char getOperation (String exp) {
@@ -73,15 +86,4 @@ public class Parser extends ParseException {
           return index;
       }
 
-      public int getFirstOperand (){
-          return this.first;
-      }
-
-      public int getSecondOperand (){
-        return this.second;
-      }
-
-      public Operation getOperation (){
-        return this.operation;
-      }
 }

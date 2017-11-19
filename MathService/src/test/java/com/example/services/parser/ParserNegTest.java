@@ -1,3 +1,7 @@
+package com.example.services.parser;
+
+import com.example.models.Expression;
+import com.example.models.ParseException;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -7,13 +11,14 @@ import java.util.Collection;
 
 @RunWith(Parameterized.class)
 public class ParserNegTest {
-    private String expression;
+    private String expr;
     private Parser parser;
+    private Expression expression;
 
 
 
-    public ParserNegTest(String expression /*, ParseException expected*/) {
-        this.expression = expression;
+    public ParserNegTest(String expr) {
+        this.expr = expr;
 
     }
 
@@ -30,7 +35,7 @@ public class ParserNegTest {
 
     @Test (expected = ParseException.class)
     public void test() throws ParseException {
-        parser.evaluate(expression);
+        expression = parser.parse(expr);
 
      }
 
@@ -39,7 +44,7 @@ public class ParserNegTest {
     public static Collection<Object[]> dataProvider()
     {
         return Arrays.asList(new Object[][]{
-                {"-g + -285"},
+                {"-25 ^ 285"},
                 {"-522 - 1.2"},
                 {" 24t2 * -10 "},
                 {"454 ^ -85!"}

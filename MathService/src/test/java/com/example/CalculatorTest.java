@@ -1,3 +1,9 @@
+package com.example;
+
+import com.example.models.ParseException;
+import com.example.services.Calculator;
+import com.example.services.parser.Parser;
+import com.example.services.math.MathService;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -20,7 +26,7 @@ public class CalculatorTest {
 
     @Before  // BeforeClass + static
     public void setup() {
-        calc = new Calculator();
+        calc = new Calculator(new Parser(), new MathService());
 
     }
 
@@ -45,4 +51,6 @@ public class CalculatorTest {
                 {"454 / -85", -5 }
         });
     }
+
+
 }
