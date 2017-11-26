@@ -11,7 +11,9 @@
     <modules>
         <module>MathService</module>
         <module>WebServlet</module>
-        <module>RestApiTest</module>
+        <module>ApiTest</module>
+        <module>SerializingTest</module>
+        <module>StarWarsApi</module>
     </modules>
 
 

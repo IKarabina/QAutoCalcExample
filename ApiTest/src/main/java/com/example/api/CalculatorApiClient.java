@@ -1,4 +1,4 @@
-package com.example.api_client;
+package com.example.api;
 
 public interface CalculatorApiClient {
 

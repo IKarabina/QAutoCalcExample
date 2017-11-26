@@ -39,7 +39,7 @@
                 <configuration>
                     <server>Tomcat8</server>
                     <url>http://localhost:8080/manager/text</url>
-                    <path>/$(project.build.finalName)</path>
+                    <path>/${project.build.finalName}</path>
                 </configuration>
             </plugin>
         </plugins>

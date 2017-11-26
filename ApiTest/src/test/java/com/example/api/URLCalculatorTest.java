@@ -1,7 +1,7 @@
-package com.example;
+package com.example.api;
 
-import com.example.api_client.CalculatorApiClient;
-import com.example.api_client.URLApiClient;
+import com.example.api.CalculatorApiClient;
+import com.example.api.URLApiClient;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
