@@ -1,4 +1,4 @@
-package com.example.math;
+package com.example.persistence.math;
 
 import com.example.models.Expression;
 import com.example.models.Operation;

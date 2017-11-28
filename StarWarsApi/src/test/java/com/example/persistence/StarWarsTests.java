@@ -1,7 +1,12 @@
-package com.example;
+package com.example.persistence;
 
-import com.example.models.*;
+import com.example.assertions.PlanetAssertion;
+import com.example.assertions.SWCollectionAssertion;
 import com.example.config.ConfigProvider;
+import com.example.models.People;
+import com.example.models.Planet;
+import com.example.models.SWCollection;
+import com.example.models.Starship;
 import com.google.gson.Gson;
 import org.junit.Assert;
 import org.junit.Test;
@@ -22,13 +27,17 @@ public class StarWarsTests {
                 .when()
                 .get("/people/1/").as(People.class);
 
+
+
         Planet responseP = given()
                 .baseUri(ConfigProvider.INSTANCE.getServerUrl())
                 .expect()
                 .when()
                 .get(response.getHomeworld().replace(ConfigProvider.INSTANCE.getServerUrl(),"")).as(Planet.class);
 
-        Assert.assertEquals("Tatooine", responseP.getName());
+
+        PlanetAssertion.assertThat(responseP).hasName("Tatooine");
+     //   Assert.assertEquals("Tatooine", responseP.getName());
 
 
     }
@@ -42,7 +51,9 @@ public class StarWarsTests {
                 .when()
                 .get("/planets/1/").as(Planet.class);
 
-       Assert.assertEquals(5, response.getFilms().size());
+        PlanetAssertion.assertThat(response).filmsCount(5);
+
+      // Assert.assertEquals(5, response.getFilms().size());
     }
 
     @Test
@@ -55,8 +66,8 @@ public class StarWarsTests {
                 .when()
                 .get("/starships/").as(SWCollection.class);
 
-
-        Assert.assertEquals(37, response.getCount());
+        SWCollectionAssertion.assertThat(response).hasCount(37);
+      //  Assert.assertEquals(37, response.getCount());
     }
 
     @Test

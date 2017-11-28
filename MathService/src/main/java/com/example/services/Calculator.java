@@ -2,8 +2,8 @@ package com.example.services;
 
 import com.example.models.Expression;
 import com.example.models.ParseException;
-import com.example.services.math.MathService;
 import com.example.services.parser.Parser;
+import com.example.services.math.MathService;
 
 public class Calculator {
 

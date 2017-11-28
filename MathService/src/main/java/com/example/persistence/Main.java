@@ -1,4 +1,4 @@
-package com.example;
+package com.example.persistence;
 
 import com.example.services.Calculator;
 import com.example.services.parser.Parser;

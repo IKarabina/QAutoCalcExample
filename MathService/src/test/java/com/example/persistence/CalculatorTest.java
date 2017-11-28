@@ -1,9 +1,9 @@
-package com.example;
+package com.example.persistence;
 
 import com.example.models.ParseException;
 import com.example.services.Calculator;
-import com.example.services.parser.Parser;
 import com.example.services.math.MathService;
+import com.example.services.parser.Parser;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
